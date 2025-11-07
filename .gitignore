@@ -1,0 +1,14 @@
+node_modules/
+
+*.log
+.env
+.master.json
+secret.txt
+
+# 忽略临时文件，但不忽略 docs 下的
+*.tmp
+!docs/*.tmp
+
+# 忽略构建输出
+dist/
+build/

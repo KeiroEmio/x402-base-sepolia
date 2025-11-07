@@ -1,0 +1,40 @@
+{
+	"name": "@settle402/sdk",
+	"version": "1.0.1",
+	"description": "Settle on Base SDK",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist"
+	],
+	"author": "info@settleonbase.xyz",
+	"scripts": {
+		"build": "tsc --outDir dist",
+		"build1": "yarn node .yarn/sdks/typescript/bin/tsc -p tsconfig.json",
+		"start": "node dist/server.js"
+	},
+	"bin": {
+		"x402": "./dist/index.js"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.5",
+		"@types/node": "^24.9.2"
+	},
+	"dependencies": {
+		"@coinbase/x402": "^0.7.1",
+		"colors": "^1.4.0",
+		"cors": "^2.8.5",
+		"dotenv": "^17.2.3",
+		"ethers": "^6.15.0",
+		"express": "^5.1.0",
+		"hexdump-nodejs": "^0.1.0",
+		"uuid": "^13.0.0",
+		"x402-express": "^0.7.1",
+		"yargs": "^18.0.0"
+	},
+	"packageManager": "yarn@4.3.0+sha512.1606bef7c84bc7d83b8576063de2fd08f7d69f9939015bed800f9585a002390268ecc777e9feeba7e26e9556aef6beaad4806968db2182ab5dd3e955ab3b9a0b"
+}
