@@ -29,6 +29,8 @@ const USDCContract = '0x036CbD53842c5426634e7929541eC2318f3dCF7e'
 
 const SETTLEContract = '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913'
 
+// Offline signature transfer address are defined by the server.
+const tagetAddress = '0xe11B1025F25124550E148072a14590D43Fb79625'
 // const eventContract = '0x18A976ee42A89025f0d3c7Fb8B32e0f8B840E1F3'
 
 const MINT_RATE = ethers.parseUnits('7000', 18)
@@ -240,7 +242,7 @@ function createExactPaymentRequirements(
         resource,
         description,
         mimeType: "application/json",
-        payTo: SETTLEContract,
+        payTo: tagetAddress,
         maxTimeoutSeconds: 10,
         asset: asset.address,
         outputSchema: undefined,

@@ -288,10 +288,8 @@ const SETTLE_FILE = join(os.homedir(), "settle.json")
 // persistent hash set
 const persistedHashes = new Set<string>()
 
-// 文件中现有的所有记录（倒序，最新在前）
 let fileCache: ReflashData[] = []
 
-// 定时器句柄
 let settleFlushTimer: NodeJS.Timeout | null = null;
 let flushing = false;
 
@@ -341,18 +339,14 @@ const loadSettleFile = async () => {
 		if (Array.isArray(arr)) {
 			logger(`loadSettleFile ${SETTLE_FILE}`, inspect(arr, false, 3, true));
 
-			// ✅ 先去重（按 tx 或 hash 唯一）
 			const uniqueMap = new Map<string, ReflashData>();
 
 			for (const item of arr as ReflashData[]) {
-				const key = item.hash || item.hash || JSON.stringify(item); // 兜底
+				const key = item.hash || item.hash || JSON.stringify(item);
 				if (!uniqueMap.has(key)) uniqueMap.set(key, item);
 			}
 			let deduped = Array.from(uniqueMap.values());
 
-
-
-			// ✅ 保存至缓存（保证最新在前）
 			fileCache = deduped;
 
 		} else {
@@ -369,8 +363,6 @@ const loadSettleFile = async () => {
 			fileCache = [];
 		}
 	}
-
-	// ✅ 初始化 ReflashData 数组（最多前 20 条，倒序）
 	ReflashData.splice(0, ReflashData.length, ...fileCache.slice(0, 20));
 	logger(`ReflashData initialized with ${ReflashData.length} items`);
 };
@@ -378,10 +370,8 @@ const loadSettleFile = async () => {
 async function initSettlePersistence() {
 	await loadSettleFile();
 
-	// 每 5 分钟增量落盘
 	settleFlushTimer = setInterval(flushNewReflashData, 5 * 60 * 1000);
 
-	// 进程退出时兜底 flush 一次
 	const onExit = async () => {
 		try {
 			if (settleFlushTimer) clearInterval(settleFlushTimer);
@@ -412,7 +402,6 @@ export class x402Server {
 		console.log('⏳ start() called')
 		try {
 			this.localserver = await initialize(this.reactBuildFolder, this.PORT, router)
-			console.log('✨ start() completed successfully')
 		} catch (err) {
 			console.error('❌ start() error:', err)
 			throw err
@@ -448,7 +437,7 @@ let newRecords1: any = []
 
 function flushNow() {
 	if (newRecords1.length === 0) return
-	if (flushing) return                   // 简单并发保护
+	if (flushing) return
 	flushing = true
 	try {
 		let oldArr = []

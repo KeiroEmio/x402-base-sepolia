@@ -57,8 +57,6 @@ You can navigate to https://portal.cdp.coinbase.com/products/faucet in your brow
 
 ```json
 {
-  "settle_admin": "0x0000000000000000000000000000000000000000",
-  "settle_u1": "0x0000000000000000000000000000000000000000",
   "base_endpoint": "https://mainnet.base.org",
   "base": {
     "CDP_API_KEY_ID": "your-key-id",
