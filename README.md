@@ -91,10 +91,10 @@ If your client targets `http://localhost:4088`, either:
 ### Terminal 2: Offline signing and payment (client)
 
 ```bash
-npx ts-node offisig.ts
+npx ts-node src/client.ts
 ```
 
-What `offisig.ts` does:
+What `client.ts` does:
 
 - Calls `/api/weather`, receives `402` JSON with `accepts` payment requirements.
 - Builds EIP‑712 TransferWithAuthorization, signs offline using `PAYER_PK`.

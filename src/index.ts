@@ -1,5 +1,5 @@
 #!/usr/local/bin
-import { x402Server} from './server'
+import { x402Server } from './server'
 
 const yargs = require('yargs')
 
@@ -34,13 +34,13 @@ let PORT = 3001
 let PATH = __dirname
 
 export const launchDaemon = (port: number, path: string) => {
-    new x402Server ( port, path )
+    new x402Server(port, path)
 }
 
 
 if (argv.port || argv.path) {
     PATH = argv.path
-    if (typeof argv.port === 'number') {
+    if (typeof argv.port == 'number') {
         PORT = argv.port
     } else {
         console.log('Invalid PORT, running on PORT 3001.')
